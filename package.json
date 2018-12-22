@@ -1,0 +1,45 @@
+{
+  "name": "ipreact-router",
+  "version": "0.5.0",
+  "description": "ipreact-router",
+  "main": "src/ipreact-router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "f2e start",
+    "build": "f2e build",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/ipreact-router.git"
+  },
+  "keywords": [],
+  "author": "shy2850",
+  "module": "dist/ipreact-router.js",
+  "typings": "dist/ipreact-router.d.ts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shy2850/ipreact-router/issues"
+  },
+  "files": [
+    "README.md",
+    "src/*",
+    "dist/*"
+  ],
+  "homepage": "https://github.com/shy2850/ipreact-router#readme",
+  "devDependencies": {
+    "f2e-middle-rollup": "^0.3.3",
+    "f2e-server": "^2.9.13",
+    "rollup": "^0.68.1",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.18.1",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@types/history": "^4.7.2",
+    "history": "^4.7.2",
+    "ipreact": "^0.2.0",
+    "preact": "^8.4.2"
+  }
+}

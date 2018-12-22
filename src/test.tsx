@@ -1,11 +1,3 @@
-# ipreact-router
-ipreact-router
-
-### usage
-
-`npm i ipreact-router`
-
-```tsx
 import { h, Component, render } from 'preact'
 import { Router, Route, Link } from './ipreact-router'
 import { createHashHistory } from 'history'
@@ -49,4 +41,3 @@ class App extends Component {
 }
 
 render(<App/>, document.getElementById('app'))
-```
