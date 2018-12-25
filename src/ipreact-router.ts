@@ -1,4 +1,4 @@
-import { h, Component, VNode, ComponentConstructor, FunctionalComponent, PreactHTMLAttributes, PreactDOMAttributes } from "preact";
+import { h, Component, VNode, ComponentConstructor, FunctionalComponent, PreactHTMLAttributes, PreactDOMAttributes, ComponentChildren } from "preact";
 import createStore, { IPreact, Connect, DispatchAction } from "ipreact";
 import { History, Location } from "history";
 
@@ -6,7 +6,7 @@ export type ComponentProvider = ComponentConstructor<any, any> | FunctionalCompo
 
 export interface RouteProps {
     history: History
-    children: any
+    children?: ComponentChildren
     node?: VNode
 }
 const { connect, getState, dispatch }: IPreact<RouteProps> = createStore()()
@@ -18,7 +18,7 @@ export interface RouterProps {
 }
 
 export interface LinkProps extends JSX.HTMLAttributes {
-    children: any
+    children?: ComponentChildren
     href: string
     onClick?: {
         (e: MouseEvent): void
@@ -98,8 +98,8 @@ export const Route: ComponentConstructor<RouteProps, any> =  connect(() => {
             history: props.history
         }))
         const { children = [] } = props
-        let rest = []
-        children.map((item: VNode) => {
+        let rest = [];
+        [].concat(children).map((item: VNode) => {
             if (item.nodeName === Router) {
                 const { path, exact, component } = item.attributes
                 RouterList.push({ path, exact, component })
@@ -138,4 +138,4 @@ export const Link: FunctionalComponent<LinkProps> = connect(({href}) => {
             // actions.changePath(href)
         }
     }
-})(({ children, ...rest }: LinkProps) => h('a', rest, ...children))
+})(({ children, ...rest }: LinkProps) => h('a', rest, ...[].concat(children)))
