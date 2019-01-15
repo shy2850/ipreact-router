@@ -4,12 +4,22 @@ import { createHashHistory } from 'history'
 
 interface Com2Props {params: {title: string}}
 
+class com2 extends Component<Com2Props> {
+    componentWillReceiveProps (nextProps: Com2Props) {
+        console.log('cwr', nextProps.params)
+    }
+    componentDidMount () {
+        console.log('cdm', this.props.params)
+    }
+    render () {
+        const { params } = this.props
+        return <div>com2: {params.title}</div>
+    }
+}
 class App extends Component {
     com1 = () => <div>com1</div>
-    com2 = ({params}: Com2Props) => <div>com2: {params.title}</div>
     com3 = () => <div>com3</div>
     com404 = () => <h2>404</h2>
-    
     history = createHashHistory()
     state = {pathname: this.history.location.pathname}
     componentDidMount () {
@@ -27,12 +37,13 @@ class App extends Component {
                 <Link className={pathname === '/com1' ? 'current' : ''} href="/com1">com1</Link>
                 <Link className={pathname === '/com2' ? 'current' : ''} href="/com2">com2</Link>
                 <Link className={pathname === '/com2/heheda' ? 'current' : ''} href="/com2/heheda">com2/heheda</Link>
+                <Link className={pathname === '/com2/haha' ? 'current' : ''} href="/com2/haha">com2/haha</Link>
                 <Link className={pathname === '/com3' ? 'current' : ''} href="/com3">com3</Link>
                 <Link className={pathname === '/com3/sub' ? 'current' : ''} href="/com3/sub">com3/sub</Link>
             </p>
             <Route history={this.history}>
                 <Router path="com1" exact component={this.com1}/>
-                <Router path="com2/:title" component={this.com2}/>
+                <Router path="com2/:title" component={com2}/>
                 <Router path="com3" exact component={this.com3}/>
                 <Router component={this.com404}/>
             </Route>
