@@ -74,6 +74,7 @@ const getRouter = async (pathname = '/', history: History) => {
 const actions = {
     changePath: (pathname: string) => {
         const { history } = getState()
+        last_href = pathname
         getRouter(pathname, history).then(node => {
             dispatch(state => ({
                 ...state,
@@ -116,7 +117,7 @@ export const Route: ComponentConstructor<RouteProps, any> =  connect(() => {
             const { pathname } = location
             actions.changePath(pathname)
         })
-        actions.changePath(last_href = history.location.pathname)
+        actions.changePath(history.location.pathname)
     }
     render () {
         const { rest = [] } = this
@@ -132,7 +133,6 @@ export const Link: FunctionalComponent<LinkProps> = connect(({href}) => {
         onClick (e: MouseEvent) {
             e.preventDefault()
             if (last_href != href) {
-                last_href = href
                 history.push(href)
             }
             // actions.changePath(href)

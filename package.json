@@ -1,6 +1,6 @@
 {
   "name": "ipreact-router",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "ipreact-router",
   "main": "src/ipreact-router.js",
   "scripts": {
